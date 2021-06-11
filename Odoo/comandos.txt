@@ -1,0 +1,43 @@
+sudo apt-get update && sudo apt-get upgrade 
+
+sudo apt-get install -y python3 python3-pip 		(instalamos paquetes de python 3, a partir de odoo 11 usa py3)
+
+sudo apt-get install -y libxml2-dev libxslt1-dev zlib1g-dev libsasl2-dev libldap2-dev libssl-dev python-dev python3-dev build-essential libffi-dev zlib1g-dev python-pip gcc	(paquetes de linux que necesita odoo para funcionar)
+
+sudo apt-get install -y python-pypdf2 python-dateutil python-feedparser python-ldap python-libxslt1 python-lxml python-mako python-openid python-psycopg2 python-babel python-pychart python-pydot python-pyparsing python-reportlab python-simplejson python-tz python-vatnumber python-vobject python-webdav python-werkzeug python-xlwt python-yaml python-zsi python-docutils python-psutil python-mock python-unittest2 python-jinja2 python-decorator python-requests python-passlib python-pil		(paquetes de python )
+
+sudo pip3 install PyPDF2 Werkzeug==0.11.15 python-dateutil reportlab psycopg2-binary (otros paquetes de python)
+
+sudo apt-get install -y npm	(instalamos npm)
+
+sudo ln -s /usr/bin/nodejs /usr/bin/node	(vemos si hay acceso directo)
+
+sudo npm install -g less less-plugin-clean-css		(instalamos de forma global (-g) el paquete less y less plugin clean que necesita para funcionar)
+sudo apt-get install -y node-less			(instalamos node less)
+	
+sudo adduser --system --home=/opt/josema --group josema 	(configuracion inicial de odoo, agregamos un usuario al sistema, usuario josema que pertenece al grupo josema)
+
+sudo apt-get install postgresql		(instalamos postgres sql, ya estaba)
+
+sudo su – postgres			(entramos en postgres para crear un usuario)
+
+createuser --createdb --username postgres --no-createrole --no-superuser --pwprompt josema	(lo creamos con permiso para crear base de datos, sin role, ya lo haremos despues,)
+
+psql		(entramos a psql y nos abre linea de comandos de la bd, aquí escribiremos en lenguaje de bd)
+
+ALTER USER josema WITH SUPERUSER;	(aqui hacemos alter user al usuario josema y le damos super usuario para que pueda crear bases de datos y demas) 
+
+\q 	( salimos)
+exit		( y salimos de postgres)
+
+sudo su - josema-s /bin/bash	(ya tenemos instalado postgres, pasamos a instalar odoo, entramos al usuario josema creado anteriormente y nos mande a la Home del user)
+
+sudo git clone https://www.github.com/odoo/odoo --depth 1 --branch 14.0 --single-branch . 	(clonamos de Git y salimos)
+exit
+
+cd /opt/josema   ( cd odoo )
+sudo pip3 install -r requirements.txt
+
+exit
+
+sudo -Hu josema ./odoo-bin	(iniciamos odoo siempre en esta ruta)

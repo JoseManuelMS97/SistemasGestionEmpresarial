@@ -1,0 +1,5 @@
+num = int(input("Dame un numero: "))
+print(num,"^ 2 = ",num*num)
+print(num,"^ 3 = ",num**3)
+print(num,"^ 4 = ",num**4)
+print(num,"^ 5 = ",num**5)
